@@ -15,11 +15,16 @@ import java.util.Scanner;
 
 public class Agenda {
     int contador = 1;
-    FileReader fr = null;
-    BufferedReader br = null;
+
+    FileReader fr_pet = null;
+    BufferedReader br_pet = null;
+
+    FileReader fr_tutor = null;
+    BufferedReader br_tutor = null;
 
     // Caminho do arquivo
-    private static String nomeArquivo = "C:\\Users\\Gravena\\OneDrive\\Área de Trabalho\\flag.txt";
+    private static String file_pet = "C:\\Users\\Gravena\\OneDrive\\Área de Trabalho\\test\\bd_pet.txt";
+    private static String file_tutor = "C:\\Users\\Gravena\\OneDrive\\Área de Trabalho\\test\\bd_tutor.txt";
 
 
     public void opcoes_agenda(){
@@ -67,75 +72,25 @@ public class Agenda {
     }
 
 
-    // grava as respostas no banco de dado(notepad) e não imprime
-    public void record(String nome, String nomePet, int idade, int telefone, String alergia, String raca){
-        
-        // Gerador de ID
-
-
-
-        // Grava dados no arquivo junto com o id em cima
-        
-        try{
-
-            try{
-                fr = new FileReader(nomeArquivo);
-                br = new BufferedReader(fr);
-    
-                String line = br.readLine();
-    
-
-                while(line != null){
-                    contador++;
-                    line = br.readLine();
-                }
-            }
-    
-            catch (IOException e){
-                System.out.println("Error: " + e.getMessage());
-            }
-
-
-            // verifica se o arquivo já existe
-            boolean arquivoExiste = new File(nomeArquivo).exists();
-
-            // Abre o escritor para adicionar dados ao arquivo
-            FileWriter data = new FileWriter(nomeArquivo, arquivoExiste);
-            if (!arquivoExiste){
-                data.write("Nome");
-            }
-
-            // escrever os dados
-            data.write(contador + ", " + nome + ", " + nomePet + ", " + idade + ", " + telefone + ",  " + alergia + ", " + raca + "\n");
-
-            // Escrever todos os dados do buffer no arquivo imediatamente
-            data.flush();
-
-            // Fecha o rescurso de escrita
-            data.close();
-
-        } 
-
-        catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
-
     // imprime o que estiver no banco de dados
     public void print(){
         
         try{
-            fr = new FileReader(nomeArquivo);
-            br = new BufferedReader(fr);
+            fr_pet = new FileReader(file_pet);
+            br_pet = new BufferedReader(fr_pet);
 
-            String line = br.readLine();
+            fr_tutor = new FileReader(file_tutor);
+            br_tutor = new BufferedReader(fr_tutor);
+
+            String line_pet = br_pet.readLine();
+            String line_tutor = br_tutor.readLine();
             
-            System.out.println("ID, " + "NOME, " + "Nome do Pet, " + "Idade do Pet, " + "Telefone, " + "Alergia, " + "Raça, "+ "\n");
+            // Cabeçalho
+            System.out.println("ID do Pet, " + "Nome do Pet, " + "Idade do Pet, " + "Raça, " + "Alergia, " + "ID Tutor, " + "Nome Do Tutor, " + "Telefone, " + "Endereço, " + "Pagamento, " + "\n");
 
-            while(line != null){
-                System.out.println(line.replace(",", ", "));
-                line = br.readLine();
+            while(line_pet != null){
+                System.out.println(line_pet.replace(",", ", ") + line_tutor.replace(",", ", "));
+                line_pet = br_pet.readLine();
             }
         }
 
@@ -145,8 +100,8 @@ public class Agenda {
 
         finally{
             try{
-                br.close();
-                fr.close();
+                br_pet.close();
+                fr_pet.close();
             }
             catch (IOException e){
                 e.printStackTrace();
@@ -163,15 +118,15 @@ public class Agenda {
 
         try{
             try{
-                fr = new FileReader(nomeArquivo);
-                br = new BufferedReader(fr);
+                fr_pet = new FileReader(file_pet);
+                br_pet = new BufferedReader(fr_pet);
     
-                String line = br.readLine();
+                String line = br_pet.readLine();
     
 
                 while(line != null){
                     contador++;
-                    line = br.readLine();
+                    line = br_pet.readLine();
                 }
             }
     
@@ -181,10 +136,10 @@ public class Agenda {
 
 
             // verifica se o arquivo já existe
-            boolean arquivoExiste = new File(nomeArquivo).exists();
+            boolean arquivoExiste = new File(file_pet).exists();
 
             // Abre o escritor para adicionar dados ao arquivo
-            FileWriter data = new FileWriter(nomeArquivo, arquivoExiste);
+            FileWriter data = new FileWriter(file_pet, arquivoExiste);
             if (!arquivoExiste){
                 data.write("Nome");
             }
@@ -221,10 +176,10 @@ public class Agenda {
             int procura = 0;
 
             try{
-                fr = new FileReader(nomeArquivo);
-                br = new BufferedReader(fr);
+                fr_pet = new FileReader(file_pet);
+                br_pet = new BufferedReader(fr_pet);
     
-                String line = br.readLine();
+                String line = br_pet.readLine();
                 
                 System.out.println("ID, " + "NOME, " + "Nome do Pet, " + "Idade do Pet, " + "Telefone, " + "Alergia, " + "Raça, "+ "\n");
     
@@ -233,7 +188,7 @@ public class Agenda {
                     if(procura == choiceID){
                         System.out.println(line.replace(",", "\t"));
                     }
-                    line = br.readLine();
+                    line = br_pet.readLine();
                 }
             }
     
@@ -246,16 +201,16 @@ public class Agenda {
 
     public void ordemAgendamento(){
         try {
-            fr = new FileReader(nomeArquivo);
-            br = new BufferedReader(fr);
+            fr_pet = new FileReader(file_pet);
+            br_pet = new BufferedReader(fr_pet);
 
             List<String> linhas = new ArrayList<>();
-            String line = br.readLine();
+            String line = br_pet.readLine();
             
             // Adiciona cada linha à lista
             while (line != null) {
                 linhas.add(line);
-                line = br.readLine();
+                line = br_pet.readLine();
             }
 
             // Imprime os dados de baixo para cima
@@ -268,8 +223,8 @@ public class Agenda {
             System.out.println("Error: " + e.getMessage());
         } finally {
             try {
-                if (br != null) br.close();
-                if (fr != null) fr.close();
+                if (br_pet != null) br_pet.close();
+                if (fr_pet != null) fr_pet.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

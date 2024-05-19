@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Client {
     Agenda agenda = new Agenda();
+    Record record = new Record();
 
     public void opcoes(){
         Scanner escolha_cliente = new Scanner(System.in);
@@ -46,11 +47,15 @@ public class Client {
         String nome = "";
         String nomePet = "";
         int telefone = 0;
+        String pagamento = "";
+        String endereco = "";
         String alergia = "";
         String raca = "";
         int idade = 0;
 
         // Solicita ao usuário até que uma entrada válida seja fornecida
+
+        // nome do tutor
         while (nome.isEmpty()) {
             System.out.println("\nQual seu nome? ");
             nome = dado.nextLine().trim();
@@ -59,24 +64,8 @@ public class Client {
                 System.out.println("Por favor, insira um nome válido.");
             }
         }
-
-        while (nomePet.isEmpty()) {
-            System.out.println("\nQual o nome do Pet? ");
-            nomePet = dado.nextLine().trim();
-            if (nomePet.isEmpty()) {
-                System.out.println("Por favor, insira um nome válido.");
-            }
-        }
-
-        while (idade == 0) {
-            try{
-                System.out.println("\nQual o idade do seu pet? ");
-                idade = Integer.parseInt(dado.nextLine().trim());
-            }catch (NumberFormatException e){
-                System.out.println("Idade inválido. Por favor, insira um número válido.");
-            }
-        }
-
+        
+        // telefone do tutor
         while (telefone == 0) {
             try{
                 System.out.println("\nQual seu telefone? ");
@@ -87,6 +76,45 @@ public class Client {
         }
 
 
+        // endereço do tutor
+        while (endereco.isEmpty()) {
+            System.out.println("\nQual seu endereço? ");
+            endereco = dado.nextLine().trim();
+            if (endereco.isEmpty()) {
+                System.out.println("Por favor, insira um endereço valido.");
+            }
+        }
+
+
+        // Forma de pagamento
+        while (pagamento.isEmpty()) {
+            System.out.println("\nQual seu endereço? ");
+            pagamento = dado.nextLine().trim();
+            if (pagamento.isEmpty()) {
+                System.out.println("Por favor, insira um endereço valido.");
+            }
+        }
+
+        // Nome do Pet
+        while (nomePet.isEmpty()) {
+            System.out.println("\nQual o nome do Pet? ");
+            nomePet = dado.nextLine().trim();
+            if (nomePet.isEmpty()) {
+                System.out.println("Por favor, insira um nome válido.");
+            }
+        }
+
+        // idade do Pet
+        while (idade == 0) {
+            try{
+                System.out.println("\nQual o idade do seu pet? ");
+                idade = Integer.parseInt(dado.nextLine().trim());
+            }catch (NumberFormatException e){
+                System.out.println("Idade inválido. Por favor, insira um número válido.");
+            }
+        }
+
+        // Pergunta se o Pet tem alguma alergia, como shampoo, perfume...
         while (alergia.isEmpty()) {
             System.out.println("\nSeu pet tem alguma alergia? ");
             alergia = dado.nextLine().trim();
@@ -95,6 +123,7 @@ public class Client {
             }
         }
 
+        // Pergunta a raça do Pet
         while (raca.isEmpty()) {
             System.out.println("\nQual a raça do seu pet? ");
             raca = dado.nextLine().trim();
@@ -104,7 +133,8 @@ public class Client {
         }
 
 
-        agenda.record(nome, nomePet, idade, telefone, alergia, raca);
+        record.record_pet(nomePet, idade, raca, alergia);
+        record.record_tutor(nome, telefone, endereco, pagamento);
     }
 
     public void quemSomos(){
