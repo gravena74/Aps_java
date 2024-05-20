@@ -1,2 +1,4 @@
-1, joao, 8932, jardim, jardim
-3, bruno, 483, jaridm, jardim
+1, joao, 3283, jardim, dinheiro
+2, andrey, 4324, jardim, cartao
+3, lucas, 2332, jardim, dinheiro
+4, lucas, 44343, jardimaoasmda, dinehiro

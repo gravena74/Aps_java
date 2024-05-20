@@ -72,7 +72,7 @@ public class Record {
     public void record_tutor(String nome, int telefone, String endereco, String pagamento){
         
         // Gerador de ID
-
+        int contador = 1;
 
 
         // Grava dados no arquivo junto com o id em cima

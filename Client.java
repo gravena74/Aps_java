@@ -88,7 +88,7 @@ public class Client {
 
         // Forma de pagamento
         while (pagamento.isEmpty()) {
-            System.out.println("\nQual seu endereço? ");
+            System.out.println("\nQual a forma de pagamento? ");
             pagamento = dado.nextLine().trim();
             if (pagamento.isEmpty()) {
                 System.out.println("Por favor, insira um endereço valido.");

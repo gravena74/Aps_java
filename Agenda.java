@@ -91,6 +91,7 @@ public class Agenda {
             while(line_pet != null){
                 System.out.println(line_pet.replace(",", ", ") + line_tutor.replace(",", ", "));
                 line_pet = br_pet.readLine();
+                line_tutor = br_tutor.readLine();
             }
         }
 
@@ -178,17 +179,23 @@ public class Agenda {
             try{
                 fr_pet = new FileReader(file_pet);
                 br_pet = new BufferedReader(fr_pet);
+
+                fr_tutor = new FileReader(file_tutor);
+                br_tutor = new BufferedReader(fr_tutor);
+
+                String line_pet = br_pet.readLine();
+                String line_tutor = br_tutor.readLine();
     
-                String line = br_pet.readLine();
                 
-                System.out.println("ID, " + "NOME, " + "Nome do Pet, " + "Idade do Pet, " + "Telefone, " + "Alergia, " + "Raça, "+ "\n");
+                System.out.println("ID do Pet, " + "Nome do Pet, " + "Idade do Pet, " + "Raça, " + "Alergia, " + "ID Tutor, " + "Nome Do Tutor, " + "Telefone, " + "Endereço, " + "Pagamento, " + "\n");
     
                 while(procura != choiceID){
                     procura ++;
                     if(procura == choiceID){
-                        System.out.println(line.replace(",", "\t"));
+                        System.out.println(line_pet.replace(",", "\t") + line_tutor.replace(",", ", "));
                     }
-                    line = br_pet.readLine();
+                    line_pet = br_pet.readLine();
+                    line_tutor = br_tutor.readLine();
                 }
             }
     
@@ -214,7 +221,7 @@ public class Agenda {
             }
 
             // Imprime os dados de baixo para cima
-            System.out.println("ID, " + "NOME, " + "Nome do Pet, " + "Idade do Pet, " + "Telefone, " + "Alergia, " + "Raça, "+ "\n");
+            System.out.println("ID, " + "Nome do Pet, " + "Idade do Pet, " + "Alergia, " + "Raça, "+ "\n");
             Collections.reverse(linhas); // Inverte a ordem das linhas
             for (String linha : linhas) {
                 System.out.println(linha.replace(",", "\t"));

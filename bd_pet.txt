@@ -1,2 +1,4 @@
-1, brutos, 28, sim, sim
-2, mdpam, 43, sim, sim, 
+1, brutos, 18, golden, ism, 
+2, golden, 1, cachorro, a shampoo, 
+3, gato, 1, gato, sim, 
+4, migue, 12, nao, sim, 
